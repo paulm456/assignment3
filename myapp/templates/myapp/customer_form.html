@@ -1,0 +1,50 @@
+<!-- templates/myapp/customer_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hotel Paul - Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Hotel Paul</h1>
+        <h2>Spa and Golf Resort</h2>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="{% url 'myapp:index' %}">Home</a></li>
+                <li><a href="{% url 'myapp:login' %}">Login</a></li>
+                <li><a href="{% url 'myapp:rooms' %}">Rooms</a></li>
+                <li><a href="{% url 'myapp:spa' %}">Spa</a></li>
+                <li><a href="{% url 'myapp:golf' %}">Golf</a></li>
+                <li><a href="{% url 'myapp:dining' %}">Dine</a></li>
+                <li><a href="{% url 'myapp:help' %}">Help</a></li>
+                <li><a href="{% url 'myapp:register' %}">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h3>Register</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+
+        {% if form.errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>

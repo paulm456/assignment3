@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!--link the CSS style sheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+
+    <!-- Link to the external JavaScript file -->
+    <script src="{% static 'java/Script2.js' %}" defer></script> <!--Link javascript-->
+    <!-- Title -->
+    <title> Hotel Paul </title>
+</head>
+<body>
+
+    <!--Title for home page-->
+    <header>
+        <h1> Hotel Paul </h1>
+        <h2> Spa and Golf Resort </h2>
+
+        <!--Navigation menu-->
+        <button onclick="toggleNavMenu()" class="nav-menu-btn">☰ Menu</button>
+
+        <!--Navigation menu-->
+        <nav id="mainNav">
+            <ul>
+                <li><a href="{% url 'myapp:index' %}"> Home </a></li>
+                <li><a href="{% url 'myapp:login' %}"> Login </a></li>
+                <li><a href="{% url 'myapp:rooms'%}"> Rooms </a></li>
+                <li><a href="{% url 'myapp:spa' %}"> Spa </a></li>
+                <li><a href="{% url 'myapp:golf' %}"> Golf </a></li>
+                <li><a href="{% url 'myapp:dining' %}"> Dine </a></li>
+                <li class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Offers</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
+                        <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'myapp:help' %}"> Help </a></li>
+            </ul>
+        </nav>
+    
+        <!-- New Dropdown for Mobile Navigation -->
+        <div id="navDropdown" class="nav-dropdown-content">
+            <a href="{% url 'myapp:index' %}"> Home </a>
+            <a href="{% url 'myapp:login' %}"> Login </a>
+            <a href="{% url 'myapp:rooms'%}"> Rooms </a>
+            <a href="{% url 'myapp:spa' %}"> Spa </a>
+            <a href="{% url 'myapp:golf' %}"> Golf </a>
+            <a href="{% url 'myapp:dining' %}"> Dine </a>
+            <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
+            <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
+            <a href="{% url 'myapp:help' %}"> Help </a>
+            <a href="{% url 'myapp:bookings' %}"> Bookings </a>
+        </div>
+    </header>
+
+    <div>
+        <!-- Booking form -->
+        <form id="bookingForm" onsubmit="return validateBooking()"> <!-- Link to external javascript code -->
+        <label for="type">Choose what to book:</label>
+        <select id="type">
+            <option value="sr">Standard Room</option>
+            <option value="js">Junior Suite</option>
+            <option value="ms">Master Suite</option>
+            <option value="spa">Spa</option>
+            <option value="golf" selected>Golf</option>
+        </select>
+        <br /><br />
+        
+        <label for="pay">Choose amount to pay now:</label>
+        <select id="pay">
+            <option value="189">€189</option>
+            <option value="250">€250</option>
+            <option value="400">€400</option>
+            <option value="50">€50</option>
+            <option value="90" selected>€90</option>
+        </select>
+        <br /><br />
+        
+        <label for="checkin">Check-in Date:</label>
+        <input type="date" id="checkin" name="checkin">
+        <br /><br />
+        
+        <label for="checkout">Check-out Date:</label>
+        <input type="date" id="checkout" name="checkout">
+        <br /><br />
+        
+        <label for="guests">Number of Guests:</label>
+        <input type="number" id="guests" name="guests" min="1" max="10">
+        <br /><br />
+        
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+
+      <!-- Table to display all bookings -->
+   <div><h3>Booking List</h3></div> <br>
+    <table id="bookingTable">
+        <thead>
+            <tr>
+                <th>Booking Type</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- New rows will be added here -->
+        </tbody>
+    </table>
+    <script src="{% static 'java/Script1.js' %}" defer></script> <!--Link javascript-->
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!--link the CSS style sheet-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+
+
+    <!-- Title -->
+    <title> Hotel Paul </title>
+
+</head>
+
+<body>
+    <!--Title for home page-->
+    <header>
+        <h1> Hotel Paul </h1>
+        <h2> Spa and Golf Resort </h2>
+
+        <!--Navigation menu-->
+
+        <button onclick="toggleNavMenu()" class="nav-menu-btn">☰ Menu</button>
+
+        <!--Navigation menu-->
+        <nav id="mainNav">
+            <ul>
+                <li><a href="{% url 'myapp:index' %}"> Home </a></li>
+                <li><a href="{% url 'myapp:login' %}"> Login </a></li>
+                <li><a href="{% url 'myapp:rooms'%}"> Rooms </a></li>
+                <li><a href="{% url 'myapp:spa' %}"> Spa </a></li>
+                <li><a href="{% url 'myapp:golf' %}"> Golf </a></li>
+                <li><a href="{% url 'myapp:dining' %}"> Dine </a></li>
+                <li class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Offers</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
+                        <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'myapp:help' %}"> Help </a></li>
+            </ul>
+        </nav>
+    
+        <!-- New Dropdown for Mobile Navigation -->
+        <div id="navDropdown" class="nav-dropdown-content">
+            <a href="{% url 'myapp:index' %}"> Home </a>
+            <a href="{% url 'myapp:login' %}"> Login </a>
+            <a href="{% url 'myapp:rooms'%}"> Rooms </a>
+            <a href="{% url 'myapp:spa' %}"> Spa </a>
+            <a href="{% url 'myapp:golf' %}"> Golf </a>
+            <a href="{% url 'myapp:dining' %}"> Dine </a>
+            <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
+            <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
+            <a href="{% url 'myapp:help' %}"> Help </a>
+            <a href="{% url 'myapp:bookings' %}"> Bookings </a>
+        </div>
+    </header>
+
+    <!-- Segment for menu using css menu class to centre the menu -->
+    <div class="menu">
+        <h3>Our Menu</h3>
+        <a href="{% url 'myapp:bookings' %}"> <!-- Link to bookings page from image -->
+            <img src="{% static 'images/menu.jpg' %}" width="400" height="600" align="middle"> <!-- Link to bookings page from image -->
+        </a>
+    </div>
+    <script src="{% static 'java/Script1.js' %}" defer></script> <!--Link javascript-->
+</body>
+</html>

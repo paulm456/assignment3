@@ -1,0 +1,19 @@
+﻿{% extends 'myapp/base.html' %}
+
+{% block title %}Welcome to Hotel Paul{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Welcome to Hotel Paul</h1>
+    <h2 style="text-align: center;">Take some time to Relax, Rest and Renew</h2>
+    <p style="text-align: center;">
+        Set on a beautiful 1,300 acre country estate on the outskirts of Cavan Town, Hotel Paul is one of Ireland’s most popular Spa & Golf destinations with a superb reputation for being a genuine ‘retreat to nature’.
+    </p>
+    <p style="text-align: center;">
+        At Hotel Paul, you will find yourself in an environment void of frenzy yet full of life. Enjoy a delicate blend of country charm and contemporary interior style. Set among 1,300 acres of ancient forest, rolling meadows and pristine lakeland, this resort offers wonderful
+        <a href="{% url 'myapp:rooms' %}">accommodation</a>, healthy and delicious 
+        <a href="{% url 'myapp:dining' %}">cuisine</a>, an 18 hole 
+        <a href="{% url 'myapp:golf' %}">Golf Course</a> & superb health spa’s facilities. 
+        Complement your stay with a therapeutic treatment or two from our 
+        <a href="{% url 'myapp:spa' %}">spa treatment menu</a>.
+    </p>
+{% endblock %}
