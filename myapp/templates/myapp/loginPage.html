@@ -1,177 +1,32 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Hotel Paul - Login</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
-    <!-- Internal CSS -->
-    <script>
-        function validateForm() {
-            // Get the values from the form fields
-    let fname = document.getElementById("fname").value;
-    let lname = document.getElementById("lname").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let phone = document.getElementById("phone").value;
-    
-    // Regular expressions for email and phone number validation
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let phonePattern = /^[0-9]{10}$/; // Assumes a 10-digit number
+﻿{% extends 'myapp/base.html' %}
 
-    // Validate the form fields and send an alert if not right
-    if (fname === "" || lname === "" || email === "" || password === "" || phone === "") {
-        alert("All fields are required.");
-        return false;
-    }
-    if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address.");
-        return false;
-    }
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return false;
-    }
-    if (!phonePattern.test(phone)) {
-        alert("Please enter a valid 10-digit phone number.");
-        return false;
-    }
+{% block title %}Hotel Paul - Login{% endblock %}
 
-    // Create user object
-    let user = { fname, lname, email };
+{% block content %}
+    <div class="login-container">
+        <!-- Tell the user they must log in or register to book a room  -->
+        <p class="paragraph" style="text-align: center;">If attempting to book a room, please log in or register</p>
 
-    // Retrieve existing users from localStorage or initialize an empty array
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+        <h3 style="text-align: center;">Login</h3>
+        <p class="paragraph" style="text-align: center;">Log in to see previous bookings</p>
 
-    // Add new user to the array
-    users.push(user);
-
-    // Save updated users array back to localStorage
-    localStorage.setItem("users", JSON.stringify(users));
-
-    // Refresh table to show new user
-    loadUsers();
-
-    // Clear the form fields after submission
-    document.getElementById("loginForm").reset();
-
-    return false;
-}
-
-// Function to load users from localStorage on page load
-function loadUsers() {
-    // Get the table body element
-    let tableBody = document.querySelector("#loginTable tbody");
-    tableBody.innerHTML = ""; // Clear existing table data
-
-    // Retrieve users from localStorage or initialize an empty array
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Loop through the users array and add them to the table
-    users.forEach(user => {
-        let newRow = tableBody.insertRow();
-
-        let fnameCell = newRow.insertCell(0);
-        let lnameCell = newRow.insertCell(1);
-        let emailCell = newRow.insertCell(2);
-
-        fnameCell.textContent = user.fname;
-        lnameCell.textContent = user.lname;
-        emailCell.textContent = user.email;
-    });
-}
-
-// Load users when the page is loaded
-document.addEventListener("DOMContentLoaded", loadUsers);
-
-    </script>
-</head>
-<body>
-    <header>
-        <h1>Hotel Paul</h1>
-        <h2>Spa and Golf Resort</h2>
-
-         <!--Navigation menu-->
-
-         <button onclick="toggleNavMenu()" class="nav-menu-btn">☰ Menu</button>
-
-        <!--Navigation menu-->
-        <nav id="mainNav">
-            <ul>
-                <li><a href="{% url 'myapp:index' %}"> Home </a></li>
-                <li><a href="{% url 'myapp:login' %}"> Login </a></li>
-                <li><a href="{% url 'myapp:rooms'%}"> Rooms </a></li>
-                <li><a href="{% url 'myapp:spa' %}"> Spa </a></li>
-                <li><a href="{% url 'myapp:golf' %}"> Golf </a></li>
-                <li><a href="{% url 'myapp:dining' %}"> Dine </a></li>
-                <li class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Offers</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
-                        <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
-                    </div>
-                </li>
-                <li><a href="{% url 'myapp:help' %}"> Help </a></li>
-                <li><a href="{% url 'myapp:register' %}"> Register </a></li>
-            </ul>
-        </nav>
-    
-        <!-- New Dropdown for Mobile Navigation -->
-        <div id="navDropdown" class="nav-dropdown-content">
-            <a href="{% url 'myapp:index' %}"> Home </a>
-            <a href="{% url 'myapp:login' %}"> Login </a>
-            <a href="{% url 'myapp:rooms'%}"> Rooms </a>
-            <a href="{% url 'myapp:spa' %}"> Spa </a>
-            <a href="{% url 'myapp:golf' %}"> Golf </a>
-            <a href="{% url 'myapp:dining' %}"> Dine </a>
-            <a href="{% url 'myapp:seasonal' %}">Seasonal Offers</a>
-            <a href="{% url 'myapp:membership' %}">Membership Discounts</a>
-            <a href="{% url 'myapp:help' %}"> Help </a>
-            <a href="{% url 'myapp:bookings' %}"> Bookings </a>
-        </div>
-    </header>
-    <div>
-        <h3>Login</h3>
-        <p class="paragraph">Log in to see previous bookings</p>
-        <!-- Create form and link to internal javascript code -->
-        <form id="loginForm" onsubmit="return validateForm()">
-
-            <!-- Create labels and boxes for input -->
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname" placeholder="Enter first name"><br><br>
-            
-            <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname" placeholder="Enter last name"><br><br>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter email"><br><br>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password"><br><br>
-            
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit phone number"><br><br>
-            
-            <input type="submit" value="Submit">
+        <!-- Django login form -->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Render form fields -->
+            <button type="submit">Login</button>
         </form>
+
+        {% if form.errors %}
+            <div class="form-errors" style="color: red; text-align: center;">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
-
-<!-- Table to display all bookings -->
-<div><h3>Booking List</h3></div> <br>
-<table id="loginTable">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>E-mail</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- New rows will be added here -->
-    </tbody>
-</table>
-
-
-    <script src = "{% static 'java/Script1.js' %}" defer></script>
-</body>
-</html>
+{% endblock %}

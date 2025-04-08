@@ -300,6 +300,28 @@ table tbody tr:hover {
 }
 
 
+.user-info-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #f8f8f8;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-info-top-left a.logout-btn {
+    margin-left: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.user-info-top-left a.logout-btn:hover {
+    text-decoration: underline;
+}
+
+
 
 
 

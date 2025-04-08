@@ -142,3 +142,13 @@ MEDIA_URL = '/media/'
 
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
+
+# settings.py
+
+LOGIN_REDIRECT_URL = '/'  # Redirect to homepage or any other URL after successful login
+LOGIN_URL = '/login/'  # URL to redirect to for login when trying to book when signed out
+
+LANGUAGE_CODE = 'en-ie'  # Use Irish English locale
+
+USE_L10N = True  # Enable localization
+USE_TZ = True  # Enable timezone support

@@ -15,6 +15,10 @@
             </div>
         </li>
         <li><a href="{% url 'myapp:help' %}">Help</a></li>
+        <li><a href="{% url 'myapp:register' %}">Register</a></li>
+        {% if user.is_staff %}
+        <li><a href="{% url 'myapp:all_bookings' %}">All Bookings</a></li>
+        {% endif %}
     </ul>
 </nav>
 

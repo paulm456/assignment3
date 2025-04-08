@@ -15,4 +15,9 @@ urlpatterns = [
     path("help/", views.help_page, name="help"),
     path('register/', views.register, name='register'),  # URL for the registration page
     path("bookings/", views.bookings_page, name="bookings"),
+    path("logout/", views.logout_view, name="logout"),
+    path("bookings/update/<int:booking_id>/", views.update_booking, name="update_booking"),
+    path('bookings/delete/<int:booking_id>/', views.delete_booking, name='delete_booking'),
+    path('bookings/all/', views.all_bookings, name='all_bookings'),
+
 ]

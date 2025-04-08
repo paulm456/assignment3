@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}All Bookings{% endblock %}
+
+{% block content %}
+    <h2>All Bookings</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Booking Type</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>Guests</th>
+                <th>Amount Paid (€)</th>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.get_booking_type_display }}</td>
+                    <td>{{ booking.checkin_date }}</td>
+                    <td>{{ booking.checkout_date }}</td>
+                    <td>{{ booking.guests }}</td>
+                    <td>{{ booking.pay_now }}</td>
+                    <td>{{ booking.customer }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No bookings found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
